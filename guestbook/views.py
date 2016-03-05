@@ -1,3 +1,4 @@
+# coding:utf8
 from django.views.generic import View
 from django.template.response import TemplateResponse
 from .models import Guestbook

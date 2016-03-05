@@ -1,0 +1,6 @@
+#!/bin/sh
+#: kill -INT `cat /tmp/project-master.pid`
+# or for convenience...
+#: uwsgi --stop /tmp/project-master.pid
+
+/usr/local/bin/uwsgi --stop /tmp/zz_uwsgi.pid

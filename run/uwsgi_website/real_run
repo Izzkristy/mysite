@@ -1,0 +1,9 @@
+#!/bin/sh
+
+ulimit -c 1024000
+ulimit -n 4095
+
+export DJANGO_SETTINGS_MODULE=settings
+
+exec /usr/local/bin/uwsgi -x uwsgi.xml  --pidfile=/tmp/zz_uwsgi.pid > logs/uwsgi_website.log 2> logs/uwsgi_website.log
+

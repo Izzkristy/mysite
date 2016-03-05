@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#http://uwsgi-docs.readthedocs.org/en/latest/Management.html
+
+#There are several ways to make uWSGI gracefully restart.
+
+# using kill to send the signal
+#: kill -HUP `cat /tmp/project-master.pid`
+# or the convenience option --reload
+#: uwsgi --reload /tmp/project-master.pid
+# or if uwsgi was started with touch-reload=/tmp/somefile
+#: touch /tmp/somefile
+
+
+/usr/local/bin/uwsgi --reload /tmp/zz_uwsgi.pid
