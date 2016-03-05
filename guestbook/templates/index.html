@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+  <title>请您留言</title>
+  <script language="JavaScript">
+function InputCheck(form1)
+{
+  if (form1.nickname.value == "")
+  {
+    alert("请输入您的昵称。");
+    form1.nickname.focus();
+    return (false);
+  }
+  if (form1.content.value == "")
+  {
+    alert("留言内容不可为空。");
+    form1.content.focus();
+    return (false);
+  }
+}
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="guestbook">
+      <!--留言列表-->
+      <h3>留言列表</h3>
+      {% for comment in message %}
+      <div class="guestbook-list">
+        <p class="guestbook-head">
+          <img src="static/images/{{comment.face}}.gif" />
+          <span class="bold">'{{comment.nickname}}'</span>
+          <span class="guestbook-time">{{comment.createtime|date:"Y-m-d H:i:s"}}</span>
+        </p>
+        <p class="guestbook-content">{{comment.content}}</p>
+        {% if comment.reply %}
+        <p class="guestbook-head">
+          管理员回复：
+          <span class="guestbook-time">{{comment.replytime|date:"Y-m-d H:i:s"}}</span>
+        </p>
+        <p class="guestbook-content">{{comment.reply}}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <div class="guestbook-list guestbook-page">
+        <p>
+          '共 {{ count }} 条留言';
+          {% for i in range %}
+              {% if i == page %}
+                &nbsp;{{i}}
+              {% else %}
+                &nbsp;<a href="{% url 'guestbook' %}?p={{i}}">{{i}}</a>
+              {% endif %}
+          {% endfor %}
+        </p>
+      </div>
+    </div>
+    <!--留言列表结束-->
+
+    <div id="guestbook-form">
+      <h3>发表留言</h3>
+      <form id="form1" name="form1" method="post" action="{% url 'guestbook' %}" onSubmit="return InputCheck(this)">
+        <p>
+          <label for="title">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:</label>
+          <input id="nickname" name="nickname" type="text" />
+          <span>(必须填写，不超过16个字符串)</span>
+        </p>
+        <p>
+          <label for="title">电子邮件:</label>
+          <input id="email" name="email" type="text" />
+          <span>(非必须，不超过60个字符串)</span>
+        </p>
+        <p>
+          <label for="face">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像:</label>
+          <input type="radio" name="face" value="1" checked>
+          <img src="static/images/1.gif" />
+          <input type="radio" name="face" value="2">
+          <img src="static/images/2.gif" />
+          <input type="radio" name="face" value="3">
+          <img src="static/images/3.gif" />
+          <input type="radio" name="face" value="4">
+          <img src="static/images/4.gif" />
+          <input type="radio" name="face" value="5">
+          <img src="static/images/5.gif" />
+          <input type="radio" name="face" value="6">
+          <img src="static/images/6.gif" />
+          <input type="radio" name="face" value="7">
+          <img src="static/images/7.gif" />
+        </p>
+        <p class="leftmargin">
+          <input type="radio" name="face" value="8">
+          <img src="static/images/8.gif" />
+          <input type="radio" name="face" value="9">
+          <img src="static/images/9.gif" />
+          <input type="radio" name="face" value="10">
+          <img src="static/images/10.gif" />
+          <input type="radio" name="face" value="11">
+          <img src="static/images/11.gif" />
+          <input type="radio" name="face" value="12">
+          <img src="static/images/12.gif" />
+          <input type="radio" name="face" value="13">
+          <img src="static/images/13.gif" />
+          <input type="radio" name="face" value="14">
+          <img src="static/images/14.gif" />
+        </p>
+        <p>
+          <p>
+            <label for="title">留言内容:</label>
+            <textarea id="content" name="content"></textarea>
+          </p>
+          <input type="submit" name="submit" class="submit" value="  确 定  " />
+          <span>(请自觉遵守互联网相关政策法规，严禁发布色情、暴力、反动言论)</span>
+        </form>
+      </div>
+    </div>
+    <!--container-->
+</body>
+  </html>
