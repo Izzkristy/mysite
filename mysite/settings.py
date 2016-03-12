@@ -59,11 +59,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'PORT': 3306,
-        'HOST': '127.0.0.1',
-        'NAME': 'krsity',
-        'USER': 'krsity',
+        'HOST': 'localhost',
+        'NAME': 'kristy',
+        'USER': 'kristy',
         'PASSWORD': 'kristy_zz',
         'OPTIONS': {
             'charset': 'utf8',
@@ -74,9 +74,9 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh_CN'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
